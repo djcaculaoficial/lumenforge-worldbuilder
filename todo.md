@@ -75,7 +75,7 @@
 - [ ] Rebuild and deliver a uniquely versioned Windows installer only after confirming the installed binary contains the updated authoring studio.
 - [x] Create the public `lumenforge-worldbuilder` repository as a clean source and release lineage.
 - [x] Isolate the new desktop product identifier, package name, release tags, local-storage namespace, project schema namespace, game-package format, and native export folder from the prototype.
-- [ ] Build from the new repository checkout only, embed a source revision and compiled-bundle fingerprint in the application, and verify them before release.
+- [x] Build from the new repository checkout only, embed a source revision and compiled-bundle fingerprint in the application, and verify them before release.
 - [x] Benchmark Worldbuilder 0.3.3 against Roblox Studio's scope and publish an evidence-calibrated capability-gap analysis.
 - [x] Define a backward-compatible project-mode contract that lets a creator choose procedural 2D or procedural 3D when creating a project.
 - [x] Extend the procedural element catalogue with at least 50 distinct 2D scene elements and an explicit semantic registry.
@@ -83,5 +83,10 @@
 - [x] Add a DIY workspace for building procedural character rigs, assigning player control, and defining controlled-prop movement traits.
 - [x] Add a 3D mode with at least 12 dedicated compatible authoring tools, procedural primitives, scene configuration, camera, lighting, and runtime-preview foundations.
 - [ ] Add at least 10 further significant authoring tools that expand world construction, puzzle design, audio, testing, accessibility, localization, debugging, versioning, and build analysis.
-- [ ] Validate schemas, type checking, production bundle markers, and Windows build provenance before releasing the expansion.
-- [ ] Remove the stale native `worldbuilder-0.3` status marker and rebuild under a new immutable 0.4.x release tag before delivery.
+- [x] Validate schemas, type checking, production bundle markers, and Windows build provenance before releasing the expansion.
+- [x] Remove the stale native `worldbuilder-0.3` status marker and rebuild under a new immutable 0.4.x release tag before delivery.
+- [x] Define and document the Worldbuilder visual-redesign direction with procedural materials, hierarchy, colour and motion principles.
+- [x] Rework the studio shell, top bar, left rail, surface framing and responsive layout around the chosen cinematic visual direction.
+- [x] Add procedural visual materials and purposeful, reduced-motion-safe interface animation across primary studio interactions.
+- [x] Validate the redesign through production build and desktop-sized visual inspection before versioning the release.
+- [ ] Publish a new isolated Worldbuilder Windows installer and portable executable with fresh provenance and verified checksums.

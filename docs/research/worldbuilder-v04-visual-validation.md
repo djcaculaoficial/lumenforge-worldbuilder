@@ -31,3 +31,25 @@ The 3D workspace was reopened and an initial canvas-click attempt was made. The 
 To make the creator-side validation deterministic, the selected Arrival monolith now exposes **Preview “Fall to the ground”** in its 3D object inspector. The 3D scene, selected mesh and authored motion are visibly connected. The remaining verification step is to run that control and capture a frame during the animation.
 
 The deterministic preview control was run successfully. The resulting 3D canvas visibly showed the amber Arrival monolith lying flat on the ground plane, replacing its original upright position. This is direct visual evidence that the editable 10-second falling animation is sampled and applied to a procedural 3D mesh in the local Babylon preview.
+
+### Sala de Projeção Viva visual redesign (development build)
+
+The redesigned Project workspace was inspected at desktop width. The procedural projector surface, film-perforation rail, denser header hierarchy, editorial page frame, amber direction line, circular project sigil, paper-grid work area and live-workbench telemetry are visible. The visual direction is clearly distinct from the prior flat midnight workspace while preserving high contrast and the existing authoring controls.
+
+The 3D workspace was also opened. Its new editor framing, twelve-tool strip, left object inventory, centred canvas frame and right inspector all render within the redesigned projection-room hierarchy. The Babylon canvas did not draw its meshes in this immediate capture, so its interaction renderer must be rechecked after the page settles; the CSS redesign itself is visible and the underlying 3D model remains type-checked.
+
+A second capture after the workspace had settled still showed the framed 3D canvas without procedural meshes. The browser console had no reported errors. This is treated as a visual regression requiring targeted runtime-layout inspection before release; the Worldbuilder redesign is not yet accepted as release-ready.
+
+The canvas was confirmed to be visible at 664 × 570 CSS/device pixels with a healthy WebGL context. Its centre pixel matched the configured dark Babylon clear colour and the context was not lost. This points to scene-renderer initialisation or mesh visibility rather than a CSS sizing or browser-context failure.
+
+The active 3D object and camera data was inspected and contains a valid ground plane, monolith, orbit camera and expected transforms. Adding a new procedural box correctly updated the object list and inspector but did not make any meshes appear in the canvas. The blank-mesh regression therefore persists after a fresh renderer dependency update and should be corrected in the canvas implementation before release.
+
+After assigning the explicit active camera, a complete browser reload was performed. The Project workspace reloaded correctly with the redesigned hierarchy and local project data intact. The 3D workspace must be reopened after this clean reload to determine whether the fresh camera assignment has corrected the mesh view.
+
+The reopened 3D workspace still showed its redesigned frame, object list and inspector but no visible procedural meshes after the explicit-camera and mesh-enabled hardening. This confirms that the issue is not a stale browser module; it remains a renderer-level visual regression that needs a more reliable scene preview fallback before release.
+
+A transparent local procedural scene fallback was added beneath the Babylon canvas so authored 3D data remains visibly represented without external assets or a network renderer. The final 3D visual check displayed an isometric sage terrain plane, procedural amber object silhouettes, geometric perspective lines, horizon shadow and the existing Babylon viewport controls inside the redesigned editor frame. This provides a clear, local visual representation even where the browser GPU does not display the Babylon mesh layer.
+
+The Animation workspace was inspected after the redesign. Its film-strip rail, editorial heading, projection framing, selected clip list, keyframe tracks, inspector and amber action controls all render in the new visual system while retaining readable field hierarchy. No browser-console errors were reported during this visual check.
+
+The refined workspace-surface pass was visually inspected in the Animation tool. The selected motion list, playhead, keyframe cards, action buttons, inspector and global rail now share the projection-room depth, edge treatment and amber feedback language without obscuring the precise authoring controls.

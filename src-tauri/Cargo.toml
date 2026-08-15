@@ -1,6 +1,6 @@
 [package]
 name = "lumenforge-worldbuilder"
-version = "0.4.1"
+version = "0.4.2"
 description = "Lumenforge Worldbuilder local-first cinematic story studio"
 authors = ["Lumenforge"]
 edition = "2021"

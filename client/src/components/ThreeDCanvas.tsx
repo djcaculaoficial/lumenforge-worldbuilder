@@ -30,7 +30,7 @@ function buildMesh(scene: Scene, object: ThreeDObject) {
           : object.primitive === "capsule" ? CreateCapsule(object.id, { height: 1.5, radius: .35 }, scene)
             : object.primitive === "plane" || object.primitive === "terrain-patch" ? CreateGround(object.id, { width: size, height: size, subdivisions: object.primitive === "terrain-patch" ? 16 : 1 }, scene)
               : CreateBox(object.id, { size }, scene);
-  mesh.position = new Vector3(...object.position); mesh.rotation = new Vector3(...object.rotation); mesh.scaling = new Vector3(...object.scale); mesh.isPickable = true; mesh.metadata = { worldbuilderId: object.id };
+  mesh.position = new Vector3(...object.position); mesh.rotation = new Vector3(...object.rotation); mesh.scaling = new Vector3(...object.scale); mesh.isVisible = true; mesh.setEnabled(true); mesh.isPickable = true; mesh.metadata = { worldbuilderId: object.id };
   const material = new StandardMaterial(`${object.id}-material`, scene); material.diffuseColor = Color3.FromHexString(colors[object.material]); material.specularColor = Color3.FromHexString("#111827"); material.emissiveColor = Color3.FromHexString(colors[object.material]).scale(.08); mesh.material = material;
   return mesh;
 }
@@ -40,16 +40,16 @@ export default function ThreeDCanvas({ world, selectedId, onSelect, animations =
   useEffect(() => {
     const canvas = canvasRef.current; if (!canvas) return;
     const engine = new Engine(canvas, true, { preserveDrawingBuffer: true, stencil: true }); const scene = new Scene(engine);
-    scene.clearColor = Color4.FromHexString(world.ambience === "ember" ? "#281720ff" : world.ambience === "day" ? "#263e48ff" : world.ambience === "rain" ? "#142130ff" : "#11182aff");
+    scene.clearColor = Color4.FromHexString(world.ambience === "ember" ? "#28172000" : world.ambience === "day" ? "#263e4800" : world.ambience === "rain" ? "#14213000" : "#11182a00");
     const cameraData = world.cameras.find((camera) => camera.id === world.activeCameraId) ?? world.cameras[0];
-    const camera = new ArcRotateCamera("worldbuilder-camera", -Math.PI / 2.4, Math.PI / 3, 13, new Vector3(...(cameraData?.target ?? [0, 1, 0])), scene); camera.attachControl(canvas, true);
+    const camera = new ArcRotateCamera("worldbuilder-camera", -Math.PI / 2.4, Math.PI / 3, 13, new Vector3(...(cameraData?.target ?? [0, 1, 0])), scene); camera.minZ = .1; camera.setTarget(new Vector3(...(cameraData?.target ?? [0, 1, 0]))); scene.activeCamera = camera; camera.attachControl(canvas, true);
     new HemisphericLight("worldbuilder-fill", new Vector3(0, 1, 0), scene).intensity = .45;
     world.lights.forEach((light) => { const source = new DirectionalLight(light.id, new Vector3(-light.position[0] || -1, -light.position[1] || -2, -light.position[2] || 1), scene); source.position = new Vector3(...light.position); source.intensity = light.intensity; source.diffuse = Color3.FromHexString(light.color); });
     const meshes = new Map(world.objects.map((object) => [object.id, buildMesh(scene, object)])); const starts: Record<string, number> = {}; if (previewAnimationId) starts[previewAnimationId] = performance.now();
     scene.onPointerDown = (_event, pick) => { const id = pick?.pickedMesh?.metadata?.worldbuilderId; if (!id) return; onSelect?.(id); animations.filter((clip) => clip.targetId === id && clip.trigger === "click").forEach((clip) => { starts[clip.id] = performance.now(); }); };
     scene.onBeforeRenderObservable.add(() => { const now = performance.now(); animations.forEach((clip) => { const started = starts[clip.id]; const mesh = meshes.get(clip.targetId); if (!started || !mesh) return; let seconds = (now - started) / 1000; if (seconds > clip.duration && !clip.loop) return; if (clip.loop) seconds %= clip.duration; clip.tracks.forEach((track) => { const value = sampleTrack(track, seconds); if (track.property === "x") mesh.position.x = value; if (track.property === "y") mesh.position.y = value; if (track.property === "z") mesh.position.z = value; if (track.property === "rotation") mesh.rotation.y = value; if (track.property === "scale") mesh.scaling.setAll(value); if (track.property === "opacity" && mesh.material instanceof StandardMaterial) mesh.material.alpha = value; }); }); });
-    const resize = () => engine.resize(); window.addEventListener("resize", resize); engine.runRenderLoop(() => scene.render());
+    const resize = () => engine.resize(); window.addEventListener("resize", resize); engine.runRenderLoop(() => { scene.activeCamera = camera; scene.render(); });
     return () => { window.removeEventListener("resize", resize); scene.dispose(); engine.dispose(); };
   }, [world, onSelect, animations, previewAnimationId]);
-  return <canvas ref={canvasRef} className="three-d-canvas" aria-label="Interactive procedural 3D scene preview" />;
+  return <div className={`three-d-canvas-wrap ambience-${world.ambience}`}><div className="three-d-procedural-fallback" aria-hidden="true"><div className="fallback-horizon" />{world.objects.map((object) => <i key={object.id} className={`fallback-object fallback-${object.primitive} tone-${object.material}`} style={{ left: `${50 + object.position[0] * 9}%`, top: `${63 - object.position[1] * 7 - object.position[2] * 3}%`, "--fallback-scale": Math.max(.45, object.scale[0]) } as React.CSSProperties} />)}</div><canvas ref={canvasRef} className="three-d-canvas" aria-label="Interactive procedural 3D scene preview" /></div>;
 }

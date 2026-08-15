@@ -75,6 +75,31 @@ Todos os cenários, ícones de mundo, texturas e elementos decorativos serão **
 
 O viewport de autoria mantém-se como a âncora visual do estúdio; a cronologia corre de forma contínua sob a cena. Marcas de enquadramento, linhas de registo, selos angulares e o âmbar-fósforo compõem um sistema recorrente de direção cinematográfica.
 
+## Redesign Visual 0.5: Sala de Projeção Viva
+
+### Direção escolhida
+
+**Sala de Projeção Viva** aprofunda a Lanterna de Câmara: a aplicação passa a parecer uma sala de projeção em funcionamento, onde uma película luminosa atravessa a mesa de direção e transforma cada workspace numa variação da mesma arquitetura. O resultado deve ser calmo, tátil e cinematográfico — não um painel genérico com cartões escuros.
+
+### Princípios de composição
+
+1. **O estúdio é um enquadramento.** A barra superior torna-se uma faixa de projeção; o rail passa a ser uma tira perfurada de filme; e o conteúdo central assenta numa superfície editorial com margens e hierarquia mais generosas.
+2. **Luz como feedback.** O âmbar-fósforo tem um campo de luz subtil, limitado a seleção, criação e reprodução. Superfícies passivas usam azul-petróleo, ardósia e marfim amortecido, sem brilho excessivo.
+3. **Textura sem ficheiros.** Grão, vinheta, reflexo de celuloide, linhas de registo, brilho de projector, recortes e poeira luminosa são todos gerados por gradientes, pseudo-elementos e SVG/CSS locais.
+4. **Movimento com intenção.** Mudanças de workspace revelam o conteúdo como uma folha que entra na mesa; controlos respondem de imediato; e apenas os elementos ambientais recebem animação lenta, desativada por `prefers-reduced-motion`.
+
+### Layout paradigm
+
+A interface deixa de depender de superfícies uniformes. Um **palco com bastidores** usa uma coluna lateral densa mas clara, uma cabeça de página editorial assimétrica, um centro grande com área de trabalho iluminada, e uma faixa de telemetria que parece uma legendagem técnica. Em modo estreito, o rail comprime para símbolos e as áreas secundárias passam para baixo do trabalho principal.
+
+### Sistema cromático e tipográfico
+
+O fundo é azul-noite profundo (`#090F1B`), elevado por painéis de petróleo (`#101C2E`) e papel nocturno (`#18263A`). O marfim (`#F6EEDA`) sustenta títulos, o âmbar-fósforo (`#F4B45B`) assinala intenção, e o verde-sálvia (`#9FC5AE`) confirma estados saudáveis. Títulos continuam em Georgia local; dados em monospace local; interface corrente em system-ui. Nenhum recurso de imagem ou fonte externa é necessário.
+
+### Contrato de animação
+
+Entradas de workspace usam `opacity` e `translateY` até 180 ms, com escalonamento discreto de secções. Botões reduzem para 0.97 ao clicar e projectam uma luz curta no hover. O rail evidencia a ferramenta activa por uma guia vertical em vez de uma cápsula arredondada. O ambiente recebe grão/varrimento de projector em baixa opacidade apenas quando movimento reduzido não é solicitado.
+
 ## Expansão 0.2: A Oficina Editável
 
 O estúdio deixa de tratar o Observatório como uma demonstração fixa. A direção “Lanterna de Câmara” passa a ser uma **oficina de aventura editável**: cada clique deve alterar dados persistentes do projeto, e o preview deve interpretar esses dados.

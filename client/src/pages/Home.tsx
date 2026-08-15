@@ -1,7 +1,7 @@
 /**
- * Lumenforge 0.4 visual contract: the Lantern Cabinet is an editable, local-first
- * story workshop. Midnight work surfaces, amber authored data, procedural paper-stage
- * elements, and direct author-to-preview flow reinforce the cinematic editorial direction.
+ * Sala de Projeção Viva visual contract: an editable, local-first cinematic studio.
+ * Procedural projector light, film-strip navigation, editorial workspace framing and
+ * deliberate low-motion feedback reinforce authorship without external visual assets.
  */
 import { useEffect, useMemo, useRef, useState, type ChangeEvent } from "react";
 import "../studio-v2.css";
@@ -10,6 +10,7 @@ import "../inventory-workspace.css";
 import "../expansion-workspaces.css";
 import "../expanded-elements.css";
 import "../new-project-dialog.css";
+import "../projection-redesign.css";
 import {
   Aperture, Archive, ArrowRight, BookOpen, Box, Boxes, Braces, Check, ChevronRight, Clapperboard, Code2,
   Download, FileCode2, FilePlus2, Film, FolderOpen, Gamepad2, HelpCircle, Layers3, Lightbulb, MessageCircle,
