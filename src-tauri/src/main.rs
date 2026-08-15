@@ -45,7 +45,7 @@ fn desktop_status() -> serde_json::Value {
     serde_json::json!({
         "host": "tauri",
         "product": "Lumenforge Worldbuilder",
-        "productLine": "worldbuilder-0.3",
+        "productLine": "worldbuilder-0.4",
         "projectStorage": "local-files",
         "network": "not-required",
         "shellVersion": env!("CARGO_PKG_VERSION"),

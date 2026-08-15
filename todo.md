@@ -84,3 +84,4 @@
 - [x] Add a 3D mode with at least 12 dedicated compatible authoring tools, procedural primitives, scene configuration, camera, lighting, and runtime-preview foundations.
 - [ ] Add at least 10 further significant authoring tools that expand world construction, puzzle design, audio, testing, accessibility, localization, debugging, versioning, and build analysis.
 - [ ] Validate schemas, type checking, production bundle markers, and Windows build provenance before releasing the expansion.
+- [ ] Remove the stale native `worldbuilder-0.3` status marker and rebuild under a new immutable 0.4.x release tag before delivery.
