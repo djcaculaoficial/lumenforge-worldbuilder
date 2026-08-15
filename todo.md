@@ -1,0 +1,75 @@
+# Lumenforge Functional Studio — Execution Checklist
+
+- [ ] Define the MVP boundary: editable rooms, narrative graph, typed state, timeline, preview, persistence, and project export/import.
+- [ ] Establish the Windows 10/11 compatibility contract, packaging route, and test matrix from primary documentation.
+- [ ] Audit the current prototype’s React structure, existing interaction model, build settings, and local-only constraints.
+- [ ] Introduce a versioned project schema and a local project-store layer with validation and migration-safe defaults.
+- [ ] Make room hotspots, dialogue branches, variables, and timeline clips editable through the creator interface.
+- [ ] Add local save/load, project JSON export/import, validation feedback, and a playable preview state machine.
+- [ ] Produce a Windows implementation runbook covering desktop-shell options, signing, installer requirements, QA gates, and known limits.
+- [ ] Run type checking, production build, and visual verification; capture the final checkpoint and delivery notes.
+- [ ] Add a project hub with recent projects, templates, project health, and recovery-aware project metadata.
+- [ ] Add an asset library with procedural asset generation, tags, collections, favorites, and scene insertion.
+- [ ] Add a narrative editor with movable graph nodes, inspectable choices, consequences, conditions, and path simulation.
+- [ ] Add a shot composer with scene layers, camera framing, visual treatment controls, and a structured shot list.
+- [ ] Add a cinematic timeline with editable beats, tracks, playhead, markers, clip selection, and timing controls.
+- [ ] Add a playable preview overlay with branching decisions, inventory/state effects, subtitles, and sequence navigation.
+- [ ] Add diagnostics that surface project validation, missing references, build readiness, and recovery state.
+- [ ] Add a Windows desktop delivery architecture and release checklist without claiming untested native support.
+- [ ] Add a desktop-shell configuration with a least-privilege command surface for local projects, dialogs, and atomic saves.
+- [ ] Prepare a Windows installer configuration that includes the required WebView2 distribution strategy for offline creation.
+- [ ] Build a Windows x64 installer in a Windows-capable environment and attach the exact generated artifact to the release.
+- [ ] Perform clean-install, launch, save/reopen, update, uninstall, DPI, keyboard, and crash-recovery validation before presenting the installer as Windows-ready.
+- [ ] Provision or attach a Windows 10/11 virtual machine with a writable project folder and compatible build toolchain.
+- [ ] Execute the native installer build from the Windows environment rather than relying on unverified Linux cross-compilation.
+- [ ] Attach the generated installer and record the exact Windows release, architecture, installation path, and checks performed.
+- [ ] Validate the current web studio and desktop-shell source before releasing the work-in-progress checkpoint.
+- [ ] Deliver the current checkpoint with a clear statement that the Windows installer compilation remains incomplete in this sandbox.
+- [ ] Produce a source and release bundle that can be downloaded independently of the web preview.
+- [ ] Verify that the bundle contains the local-first studio, desktop-shell configuration, Windows release notes, and exact build command.
+- [ ] State that a Windows installer is not ready until native compilation and installation validation complete.
+- [ ] Verify the Tauri configuration, package scripts, installer targets, and output assumptions for the Windows build guide.
+- [ ] Produce a Windows build tutorial covering toolchain installation, compilation, installer discovery, and clean-install validation.
+- [ ] Add a Windows-native CI workflow that builds the NSIS and MSI installer formats and retains them as downloadable artifacts.
+- [ ] Document the minimal repository workflow required to trigger the Windows runner without a local desktop build machine.
+- [ ] Package and validate the CI-enabled handoff archive.
+- [ ] Confirm the authenticated GitHub account and repository owner before creating or modifying any remote repository.
+- [ ] Obtain explicit approval for the repository name, visibility, source upload, and workflow trigger before publishing.
+- [ ] Download and preserve the native Windows installer artifact from the successful CI run.
+- [ ] Create the approved public repository named `lumenforge-creator` only after GitHub authorization and final publication confirmation.
+- [ ] Generate and include the required `src-tauri/icons/icon.ico` Windows application resource from the Lumenforge mark.
+- [ ] Verify the icon is present in the packaged source before triggering the final Windows-native installer workflow.
+- [ ] Publish the installer artifact URL and exact build result after the corrected native run completes.
+- [ ] Monitor the active Windows-native release build at intervals of approximately 45 seconds until it completes.
+- [ ] Produce an accurate first-project walkthrough using the workflows available in the installed Lumenforge studio.
+- [ ] Define the upgraded first-run experience, including a skippable cinematic onboarding path and a persistent completion preference.
+- [ ] Add functional scene-kit, story-beat, state-variable, and project-resource controls to the local project model.
+- [ ] Expand the studio interface with editable resource surfaces, procedural composition controls, and stronger cross-workspace flow.
+- [ ] Add startup, onboarding, and workspace motion that respects reduced-motion preferences and stays within responsive interaction timings.
+- [ ] Validate the expanded studio, package the offline source, and build a new native Windows NSIS installer artifact.
+- [ ] Replace demo-only scene controls with persistent editable rooms, props, actors, hotspots, and atmospheric treatments.
+- [ ] Support true empty-project creation, project metadata editing, room creation, room selection, duplication, and deletion safeguards.
+- [ ] Add a broad procedural element catalogue with editable transform, visual treatment, labels, interaction targets, and layer ordering.
+- [ ] Implement an editable dialogue graph with node text, player choices, branch destinations, and state effects.
+- [ ] Implement scene-to-scene links, configurable state variables, and a runtime preview driven by the current authored project.
+- [ ] Produce a beginner onboarding route that teaches the editable workflow and can be skipped or resumed later.
+- [ ] Add a cutscene model with shots, camera framing, dialogue cues, transitions, duration, and scene links.
+- [ ] Build an editable cutscene workspace with shot creation, ordering, timing, live preview, and sequence validation.
+- [ ] Build a local game-package export surface with release metadata, validation gates, asset manifest generation, and post-processing stages.
+- [ ] Add an explicit Windows executable build adapter contract that packages a finished project only when the required native toolchain is available.
+- [ ] Document the distinction between portable project export, validated game-package export, and final Windows executable compilation.
+- [ ] Define a single constrained behaviour instruction model shared by Lua text and visual scripting blocks.
+- [ ] Add a local Lua scripting workspace with syntax-safe supported commands, validation, and compiled behaviour preview.
+- [ ] Add a Scratch-inspired block workspace for supported events, conditions, state changes, dialogue, room transitions, and cutscene triggers.
+- [ ] Synchronize the supported block model and generated Lua view while clearly flagging unsupported freeform Lua rather than silently changing it.
+- [ ] Add persistent item definitions, collectible element settings, inventory state, and item-aware conditions to the local project model.
+- [ ] Add an inventory workspace for creating, editing, and removing props and collectible items with unique IDs, names, descriptions, and visual treatment.
+- [ ] Extend scene connections so doors, arches, signs and any element can route a player to another authored scenario.
+- [ ] Show a live inventory and support collection, room traversal, item conditions, and item use in the playable preview.
+- [ ] Verify the shipped desktop binary serves the packaged frontend locally without requiring the development server or external network access.
+- [ ] Version the desktop shell as the 0.2 release and retain least-privilege native project and game-package operations.
+- [ ] Validate the Windows installer workflow against the desktop configuration and document the installed application’s offline runtime contract.
+- [ ] Produce a research-backed roadmap of at least 25 advanced Lumenforge engine features, including creator value, technical dependencies, delivery phases, and explicit scope boundaries.
+- [ ] Investigate why the delivered Windows installer did not expose the Lumenforge 0.2 editable workspace despite a successful CI run.
+- [ ] Verify the exact source archive, bundle version, compiled frontend fingerprints, and NSIS artifact before releasing a replacement installer.
+- [ ] Rebuild and deliver a uniquely versioned Windows installer only after confirming the installed binary contains the updated authoring studio.
