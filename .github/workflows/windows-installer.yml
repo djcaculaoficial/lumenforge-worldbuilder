@@ -71,7 +71,10 @@ jobs:
           Copy-Item $portable.FullName "$assets/Lumenforge-Worldbuilder-$version-Portable.exe"
           Copy-Item $installer.FullName "$assets/Lumenforge-Worldbuilder-$version-Setup.exe"
           Copy-Item $manifestPath "$assets/worldbuilder-verification.json"
-          Get-FileHash "$assets/*" -Algorithm SHA256 | Format-Table Path,Hash -AutoSize | Out-String | Tee-Object -FilePath "$assets/SHA256SUMS.txt"
+          Get-ChildItem "$assets" -File | ForEach-Object {
+            $hash = (Get-FileHash $_.FullName -Algorithm SHA256).Hash.ToLower()
+            "$hash  $($_.Name)"
+          } | Set-Content -Encoding ascii "$assets/SHA256SUMS.txt"
           "version=$version" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
 
       - name: Upload verified Worldbuilder release assets

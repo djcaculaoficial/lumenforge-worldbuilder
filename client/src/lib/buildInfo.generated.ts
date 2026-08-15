@@ -4,7 +4,7 @@
  */
 export const BUILD_INFO = {
   product: "Lumenforge Worldbuilder",
-  release: "0.3.2 · WORLDBUILDER",
+  release: "0.3.3 · WORLDBUILDER",
   sourceRevision: "development",
   generatedAt: "unbuilt",
 } as const;
