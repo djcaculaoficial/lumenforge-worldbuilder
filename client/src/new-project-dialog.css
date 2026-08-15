@@ -1,0 +1,4 @@
+/** Worldbuilder 0.4: explicit, local 2D/3D project-mode choice without native browser prompts. */
+.new-project-card{position:relative;width:min(510px,calc(100vw - 32px));padding:29px;border:1px solid rgba(244,180,91,.4);background:linear-gradient(145deg,#162237,#0e1625);box-shadow:0 24px 90px rgba(0,0,0,.55)}
+.new-project-mode{display:flex;align-items:center;gap:9px;color:var(--amber);font:9px ui-monospace,monospace;letter-spacing:.13em}.new-project-card h2{margin:13px 0 7px;color:#f1e7d7;font:600 28px Georgia,serif}.new-project-card p{max-width:420px;margin:0;color:#abb8c1;font-size:11px;line-height:1.65}.new-project-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:18px}
+.preview-motion{width:100%;margin-top:14px}

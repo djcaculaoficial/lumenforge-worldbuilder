@@ -53,7 +53,7 @@ jobs:
         shell: pwsh
         run: |
           $compiled = (Get-ChildItem "dist/public" -Recurse -File | Where-Object { $_.Extension -in ".js", ".html" } | ForEach-Object { Get-Content $_.FullName -Raw }) -join "`n"
-          $required = @("WORLDBUILDER", "Items", "Cutscene", "Logic", "lumenforge-worldbuilder-game-package")
+          $required = @("WORLDBUILDER", "Items", "Cutscene", "Logic", "Animation", "DIY", "3D Mode", "lumenforge-worldbuilder-game-package")
           foreach ($marker in $required) {
             if ($compiled -notmatch [regex]::Escape($marker)) { throw "Compiled frontend is missing required marker: $marker" }
           }

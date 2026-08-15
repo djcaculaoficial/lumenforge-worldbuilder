@@ -76,3 +76,11 @@
 - [x] Create the public `lumenforge-worldbuilder` repository as a clean source and release lineage.
 - [x] Isolate the new desktop product identifier, package name, release tags, local-storage namespace, project schema namespace, game-package format, and native export folder from the prototype.
 - [ ] Build from the new repository checkout only, embed a source revision and compiled-bundle fingerprint in the application, and verify them before release.
+- [x] Benchmark Worldbuilder 0.3.3 against Roblox Studio's scope and publish an evidence-calibrated capability-gap analysis.
+- [x] Define a backward-compatible project-mode contract that lets a creator choose procedural 2D or procedural 3D when creating a project.
+- [x] Extend the procedural element catalogue with at least 50 distinct 2D scene elements and an explicit semantic registry.
+- [x] Add an Animation workspace with editable, per-element 10-second tracks, keyframes, easing, playback, and preview integration.
+- [x] Add a DIY workspace for building procedural character rigs, assigning player control, and defining controlled-prop movement traits.
+- [x] Add a 3D mode with at least 12 dedicated compatible authoring tools, procedural primitives, scene configuration, camera, lighting, and runtime-preview foundations.
+- [ ] Add at least 10 further significant authoring tools that expand world construction, puzzle design, audio, testing, accessibility, localization, debugging, versioning, and build analysis.
+- [ ] Validate schemas, type checking, production bundle markers, and Windows build provenance before releasing the expansion.
