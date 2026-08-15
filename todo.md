@@ -73,3 +73,6 @@
 - [ ] Investigate why the delivered Windows installer did not expose the Lumenforge 0.2 editable workspace despite a successful CI run.
 - [ ] Verify the exact source archive, bundle version, compiled frontend fingerprints, and NSIS artifact before releasing a replacement installer.
 - [ ] Rebuild and deliver a uniquely versioned Windows installer only after confirming the installed binary contains the updated authoring studio.
+- [x] Create the public `lumenforge-worldbuilder` repository as a clean source and release lineage.
+- [x] Isolate the new desktop product identifier, package name, release tags, local-storage namespace, project schema namespace, game-package format, and native export folder from the prototype.
+- [ ] Build from the new repository checkout only, embed a source revision and compiled-bundle fingerprint in the application, and verify them before release.

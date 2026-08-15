@@ -1,8 +1,8 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
-  "productName": "Lumenforge Studio 0.2",
-  "version": "0.2.1",
-  "identifier": "im.lumenforge.creator.v021",
+  "productName": "Lumenforge Worldbuilder",
+  "version": "0.3.0",
+  "identifier": "im.lumenforge.worldbuilder",
   "build": {
     "beforeDevCommand": "pnpm dev",
     "beforeBuildCommand": "pnpm build",
@@ -12,7 +12,7 @@
   "app": {
     "windows": [
       {
-        "title": "Lumenforge Studio 0.2 — Editable Story Creator",
+        "title": "Lumenforge Worldbuilder 0.3 — Editable Story Creator",
         "width": 1440,
         "height": 900,
         "minWidth": 1024,

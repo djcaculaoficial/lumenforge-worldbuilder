@@ -1,4 +1,4 @@
-//! Lumenforge desktop shell: intentionally small native surface.
+//! Lumenforge Worldbuilder desktop shell: intentionally small native surface.
 //! UI logic lives in the local React application; this host only provides bounded project-file operations.
 
 use std::fs;
@@ -7,7 +7,7 @@ use tauri::Manager;
 
 fn validate_project_path(path: &Path) -> Result<(), String> {
     if path.extension().and_then(|extension| extension.to_str()) != Some("json") {
-        return Err("Lumenforge projects must use the .json extension.".into());
+        return Err("Worldbuilder projects must use the .json extension.".into());
     }
     Ok(())
 }
@@ -44,9 +44,13 @@ fn write_project_atomic(project_path: String, content: String) -> Result<(), Str
 fn desktop_status() -> serde_json::Value {
     serde_json::json!({
         "host": "tauri",
+        "product": "Lumenforge Worldbuilder",
+        "productLine": "worldbuilder-0.3",
         "projectStorage": "local-files",
         "network": "not-required",
-        "shellVersion": env!("CARGO_PKG_VERSION")
+        "shellVersion": env!("CARGO_PKG_VERSION"),
+        "sourceRevision": option_env!("LUMENFORGE_SOURCE_REVISION").unwrap_or("local-build"),
+        "buildChannel": option_env!("LUMENFORGE_BUILD_CHANNEL").unwrap_or("development")
     })
 }
 
@@ -80,8 +84,10 @@ fn export_game_package(
     }
     let package: serde_json::Value = serde_json::from_str(&content)
         .map_err(|_| "Game package data is not valid JSON.".to_string())?;
-    if package.get("format").and_then(|value| value.as_str()) != Some("lumenforge-game-package") {
-        return Err("This export is not a recognised Lumenforge game package.".into());
+    if package.get("format").and_then(|value| value.as_str())
+        != Some("lumenforge-worldbuilder-game-package")
+    {
+        return Err("This export is not a recognised Lumenforge Worldbuilder game package.".into());
     }
     let name = validate_export_name(&export_name)?;
     let documents = app
@@ -89,11 +95,13 @@ fn export_game_package(
         .document_dir()
         .or_else(|_| app.path().home_dir())
         .map_err(|error| format!("Unable to find a local export folder: {error}"))?;
-    let folder = documents.join("Lumenforge Exports").join(&name);
+    let folder = documents
+        .join("Lumenforge Worldbuilder Exports")
+        .join(&name);
     fs::create_dir_all(&folder)
         .map_err(|error| format!("Unable to create the export folder: {error}"))?;
-    let final_path = folder.join("game.lumenforge.json");
-    let temporary_path = folder.join("game.lumenforge.pending");
+    let final_path = folder.join("game.worldbuilder.json");
+    let temporary_path = folder.join("game.worldbuilder.pending");
     fs::write(&temporary_path, content)
         .map_err(|error| format!("Unable to stage the game package: {error}"))?;
     fs::rename(&temporary_path, &final_path)
@@ -113,5 +121,5 @@ fn main() {
             export_game_package
         ])
         .run(tauri::generate_context!())
-        .expect("error while running Lumenforge desktop shell");
+        .expect("error while running Lumenforge Worldbuilder desktop shell");
 }

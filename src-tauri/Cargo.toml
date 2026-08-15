@@ -1,7 +1,7 @@
 [package]
-name = "lumenforge"
-version = "0.2.1"
-description = "Lumenforge local-first cinematic story studio"
+name = "lumenforge-worldbuilder"
+version = "0.3.0"
+description = "Lumenforge Worldbuilder local-first cinematic story studio"
 authors = ["Lumenforge"]
 edition = "2021"
 rust-version = "1.75"

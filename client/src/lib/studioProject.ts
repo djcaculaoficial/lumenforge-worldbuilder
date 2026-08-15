@@ -1,5 +1,5 @@
 /**
- * Lumenforge 0.2 authoring contract: all game data is local, serialisable,
+ * Lumenforge Worldbuilder 0.3 authoring contract: all game data is local, serialisable,
  * and shared by the editor, preview player, portable JSON, and release package.
  */
 export type ElementKind = "arch" | "lamp" | "actor" | "note" | "plant" | "door" | "moon" | "fog" | "sign" | "mirror" | "table";
@@ -22,13 +22,13 @@ export type BehaviourBlockKind = "set_state" | "add_number" | "give_item" | "ope
 export type BehaviourBlock = { id: string; kind: BehaviourBlockKind; target: string; value?: string; condition?: string };
 export type BehaviourProgram = { id: string; label: string; elementId: string; blocks: BehaviourBlock[]; advancedLua?: string };
 export type LumenProject = {
-  schemaVersion: "2.0"; gameApiVersion: "0.2"; id: string; title: string; premise: string; mood: number; activeRoom: string;
+  schemaVersion: "3.0"; gameApiVersion: "0.3"; id: string; title: string; premise: string; mood: number; activeRoom: string;
   rooms: LumenRoom[]; items: LumenItem[]; inventory: { itemIds: string[]; maxSlots: number }; variables: ProjectVariable[]; narrative: NarrativeNode[]; timeline: TimelineBeat[]; cutscenes: Cutscene[]; behaviours: BehaviourProgram[];
   build: { target: "web-preview" | "windows-x64"; qualityProfile: "cinematic" | "balanced"; localization: string[]; executableName: string; postProcessing: { colorGrade: boolean; filmGrain: boolean; vignette: boolean; captions: boolean } };
   updatedAt: string;
 };
 
-export const STORAGE_KEY = "lumenforge.project.v2";
+export const STORAGE_KEY = "lumenforge.worldbuilder.project.v3";
 const uid = (prefix: string) => `${prefix}-${Math.random().toString(36).slice(2, 8)}`;
 const slug = (value: string) => value.toLowerCase().trim().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "") || "untitled-lantern";
 
@@ -112,7 +112,7 @@ export function runBehaviour(project: LumenProject, elementId: string) {
 const emptyProject = (title = "Untitled Lantern"): LumenProject => {
   const roomId = "first-room"; const entryId = "opening";
   return {
-    schemaVersion: "2.0", gameApiVersion: "0.2", id: slug(title), title, premise: "A quiet strange thing waits for a choice.", mood: 0, activeRoom: roomId,
+    schemaVersion: "3.0", gameApiVersion: "0.3", id: slug(title), title, premise: "A quiet strange thing waits for a choice.", mood: 0, activeRoom: roomId,
     rooms: [{ id: roomId, name: "First Room", mark: "01", ambience: "afterhours", entryNode: entryId, elements: [] }], items: [], inventory: { itemIds: [], maxSlots: 12 },
     variables: [{ id: "story-started", key: "story_started", type: "boolean", value: true, usedBy: [entryId] }],
     narrative: [{ id: entryId, kind: "start", title: "Opening", speaker: "", body: "The room is waiting for you to decide what it remembers.", target: "", choices: [], x: 12, y: 50 }],
@@ -199,7 +199,6 @@ export function validateProject(project: LumenProject) {
   return { errors, warnings, score: Math.max(0, 100 - errors.length * 24 - warnings.length * 7) };
 }
 
-function migrateLegacy(raw: any): LumenProject { const next = createStarterProject(); next.title = typeof raw?.title === "string" ? raw.title : next.title; next.id = slug(next.title); next.mood = typeof raw?.mood === "number" ? raw.mood : 0; return next; }
 function normaliseProject(raw: LumenProject): LumenProject { return { ...raw, behaviours: Array.isArray(raw.behaviours) ? raw.behaviours : [], items: Array.isArray(raw.items) ? raw.items : [], inventory: raw.inventory?.itemIds ? raw.inventory : { itemIds: [], maxSlots: 12 } }; }
-export function loadLocalProject(): LumenProject { try { const current = window.localStorage.getItem(STORAGE_KEY); if (current) { const parsed = JSON.parse(current); if (parsed.schemaVersion === "2.0" && Array.isArray(parsed.rooms) && Array.isArray(parsed.narrative)) return normaliseProject(parsed as LumenProject); } const legacy = window.localStorage.getItem("lumenforge.project.v1"); return legacy ? migrateLegacy(JSON.parse(legacy)) : createStarterProject(); } catch { return createStarterProject(); } }
+export function loadLocalProject(): LumenProject { try { const current = window.localStorage.getItem(STORAGE_KEY); if (current) { const parsed = JSON.parse(current); if (parsed.schemaVersion === "3.0" && Array.isArray(parsed.rooms) && Array.isArray(parsed.narrative)) return normaliseProject(parsed as LumenProject); } return createStarterProject(); } catch { return createStarterProject(); } }
 export function saveLocalProject(project: LumenProject) { window.localStorage.setItem(STORAGE_KEY, JSON.stringify({ ...project, updatedAt: new Date().toISOString() })); }
